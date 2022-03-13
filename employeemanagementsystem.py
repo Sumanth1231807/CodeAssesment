@@ -95,7 +95,10 @@ while True:
 
 
     elif choice == 8:
-        result = connection.execute("select * from employee where salary between 25000 and 60000")
+        lowrange = input("Enter lowest range of salary to sort")
+        highrange = input("Enter higher range of salary to sort")
+        result = connection.execute(
+            "select * from employee where salary between " + lowrange + " and " + highrange + " order by name asc")
         table = PrettyTable(["empcode", "empname", "phone", "email", "designation", "salary", "companyname"])
         for i in result:
             table.add_row([i[0], i[1], i[2], i[3], i[4], i[5], i[6]])
